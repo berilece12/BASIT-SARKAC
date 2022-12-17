@@ -1,1 +1,2 @@
-# merhaba arkadaşlar çalışammızı bu alanda yapacağız kolay gelsin
+import math
+import os
