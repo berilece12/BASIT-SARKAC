@@ -1,0 +1,2 @@
+# BASIT--SARKAC
+FİNAL ÖDEVİ
