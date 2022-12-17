@@ -6,3 +6,4 @@ import os
 
 
 başaramadık abi
+hallederizzzz
