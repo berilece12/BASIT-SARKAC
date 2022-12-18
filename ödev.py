@@ -6,3 +6,5 @@ pygame.init()
 #önce ekran
 SIZE = WIDTH, HEIGHT = 1250, 800
 APP_NAME = "Sarkaç"
+FPS = 60
+GRAVITY = 9.8
