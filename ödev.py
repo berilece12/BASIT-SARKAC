@@ -16,3 +16,4 @@ ROPE_CONNECTION_POS = (HEIGHT // 2, 20)
 SCREEN = pygame.display.set_mode(SIZE)
 
 #  sarkaç, saniyedeki görüntü sayısı, yerçelkimi ve ipi tanımladık
+#arka planı tanımla
