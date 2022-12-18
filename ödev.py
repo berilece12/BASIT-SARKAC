@@ -5,4 +5,4 @@ pygame.init()
 #sarkacı tanımlamak gerekiyor.
 #önce ekran
 SIZE = WIDTH, HEIGHT = 1250, 800
-
+APP_NAME = "Sarkaç"
