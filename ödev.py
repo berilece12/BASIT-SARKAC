@@ -14,3 +14,4 @@ ROPE_LENGTH_START = 400
 ROPE_LEN_DIVIDER = 200
 ROPE_CONNECTION_POS = (HEIGHT // 2, 20)
 SCREEN = pygame.display.set_mode(SIZE)
+pygame.display.set_caption(APP_NAME)
