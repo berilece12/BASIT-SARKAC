@@ -22,3 +22,4 @@ BACKGROUND = pygame.image.load(os.path.join("image", "background.jpg"))
 BACKGROUND_IMAGE = pygame.transform.scale(
   BACKGROUND, (HEIGHT, HEIGHT))
 BACKGROUND_IMAGE.set_alpha(50)
+BALL_START_X, BALL_START_Y = HEIGHT / 2, ROPE_LENGTH_START + 20
