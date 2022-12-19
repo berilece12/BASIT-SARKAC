@@ -19,3 +19,4 @@ SCREEN = pygame.display.set_mode(SIZE)
 #arka planı tanımla
 
 BACKGROUND = pygame.image.load(os.path.join("image", "background.jpg"))
+BACKGROUND_IMAGE = pygame.transform.scale(
