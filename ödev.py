@@ -21,3 +21,4 @@ SCREEN = pygame.display.set_mode(SIZE)
 BACKGROUND = pygame.image.load(os.path.join("image", "background.jpg"))
 BACKGROUND_IMAGE = pygame.transform.scale(
   BACKGROUND, (HEIGHT, HEIGHT))
+BACKGROUND_IMAGE.set_alpha(50)
