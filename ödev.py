@@ -17,3 +17,5 @@ SCREEN = pygame.display.set_mode(SIZE)
 
 #  sarkaç, saniyedeki görüntü sayısı, yerçelkimi ve ipi tanımladık
 #arka planı tanımla
+
+BACKGROUND = pygame.image.load(os.path.join("image", "background.jpg"))
