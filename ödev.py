@@ -27,3 +27,5 @@ BALL_START_X, BALL_START_Y = HEIGHT / 2, ROPE_LENGTH_START + 20
 
 WIDTH_SLIDER = 250
 class Slider:
+  
+    def __init__(self, x, y, text, minVal, maxVal):
