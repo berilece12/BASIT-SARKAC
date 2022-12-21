@@ -30,3 +30,4 @@ class Slider:
   
     def __init__(self, x, y, text, minVal, maxVal):
  self.x = x
+ self.y = y
