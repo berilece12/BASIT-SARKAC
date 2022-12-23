@@ -38,6 +38,6 @@ self.text = text
 self.valueRect = pygame.Rect(
  self.x + WIDTH_SLIDER + 15, self.y - 15, 70, 30)
  self.writing = False
-
+ self.writingBuffer = ""
 
 
