@@ -32,7 +32,7 @@ class Slider:
  self.x = x
  self.y = y
 self.text = text
-
+ self.min = minVal
  self.min = minVal
 
 
