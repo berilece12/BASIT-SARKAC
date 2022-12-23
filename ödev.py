@@ -35,7 +35,7 @@ self.text = text
  self.min = minVal
  self.max = maxVal
   self.percent = 50
-
+self.valueRect = pygame.Rect(
 
 
 
