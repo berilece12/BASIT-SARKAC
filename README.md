@@ -1,4 +1,4 @@
-# BASIT-SARKAC
+## BASIT-SARKAC
 FİNAL ÖDEVİ
 
 import math
