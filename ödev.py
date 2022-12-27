@@ -4,10 +4,11 @@ pygame.init()
 
 #sarkacı tanımlamak gerekiyor.
 #önce ekran
-SIZE = WIDTH, HEIGHT = 1250, 800
+
+boyutlar = genişlik, uzunluk = 1250, 800
 APP_NAME = "Sarkaç"
 FPS = 60
-GRAVITY = 9.8
+yer_çekimi = 9.8
 
 
 ROPE_LENGTH_START = 400
