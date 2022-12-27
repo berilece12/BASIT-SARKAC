@@ -38,7 +38,7 @@ class Slider:
 self.text = metin
  self.min = minVal
  self.max = maxVal
-  self.percent = 50
+  self.yüzde = 50
 self.valueRect = pygame.Rect(
  self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
  self.writing = False
