@@ -10,11 +10,11 @@ APP_NAME = "Sarkaç"
 FPS = 60
 yer_çekimi = 9.8
 
-
-ROPE_LENGTH_START = 400
-ROPE_LEN_DIVIDER = 200
-ROPE_CONNECTION_POS = (HEIGHT // 2, 20)
-SCREEN = pygame.display.set_mode(SIZE)
+ipin_başlangiç_uzunluğu = 400
+ip_uzunluğu_bölücü = 200
+ip_bağlanti_konumu = (uzunluk // 2, 20)
+ekran = pygame.display.set_mode(boyutlar)
+pygame.display.set_caption(APP_NAME)
 
 #  sarkaç, saniyedeki görüntü sayısı, yerçelkimi ve ipi tanımladık
 #arka planı tanımla
@@ -23,12 +23,10 @@ BACKGROUND = pygame.image.load(os.path.join("image", "background.jpg"))
 BACKGROUND_IMAGE = pygame.transform.scale(
   BACKGROUND, (HEIGHT, HEIGHT))
 BACKGROUND_IMAGE.set_alpha(50)
+BALL_START_X, BALL_START_Y = HEIGHT / 2, ROPE_LENGTH_START + 20
 
-top_için_başlangiç_x, top_için_başlangiç_y = uzunluk / 2, ipin_başlangiç_uzunluğu + 20
- 
 
-değer_çubuğu_uzunluğu = 250 
-
+WIDTH_SLIDER = 250
 class Slider:
   
     def __init__(self, x, y, text, minVal, maxVal):
