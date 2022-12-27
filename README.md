@@ -1,5 +1,5 @@
 ### BASIT-SARKAC
-#FİNAL ÖDEVİ
+FİNAL ÖDEVİ
 
 
 
