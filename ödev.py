@@ -37,7 +37,7 @@ self.text = metin
  self.max = maxVal
   self.percent = 50
 self.valueRect = pygame.Rect(
- self.x + WIDTH_SLIDER + 15, self.y - 15, 70, 30)
+ self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
  self.writing = False
  self.writingBuffer = ""
 
