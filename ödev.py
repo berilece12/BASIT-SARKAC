@@ -25,8 +25,8 @@ BACKGROUND_IMAGE = pygame.transform.scale(
 BACKGROUND_IMAGE.set_alpha(50)
 BALL_START_X, BALL_START_Y = HEIGHT / 2, ROPE_LENGTH_START + 20
 
+değer_çubuğu_uzunluğu = 250 
 
-WIDTH_SLIDER = 250
 class Slider:
   
     def __init__(self, x, y, text, minVal, maxVal):
