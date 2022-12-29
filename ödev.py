@@ -56,5 +56,5 @@ def get_value(self):
 # Draw Slider Texts
  draw_text(screen, self.metin, (895, self.y-5),
             15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-
+     pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
 
