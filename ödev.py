@@ -44,4 +44,6 @@ self.valueRect = pygame.Rect(
  self.writing = False
  self.writingBuffer = ""
 
+def clamp(self, val):
+
 
