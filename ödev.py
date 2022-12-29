@@ -31,19 +31,18 @@ değer_çubuğu_uzunluğu = 250
 
 
 class Slider:
-  
-    def __init__(self, x, y, metin, minVal, maxVal):
- self.x = x
- self.y = y
-self.text = metin
- self.min = minVal
- self.max = maxVal
-  self.yüzde = 50
-self.valueRect = pygame.Rect(
- self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
- self.writing = False
- self.writingBuffer = ""
+  def __init__(self, x, y, metin, minVal, maxVal):
+    self.x = x
+    self.y = y
+    self.text = metin
+    self.min = minVal
+    self.max = maxVal
+    self.yüzde = 50
+    self.valueRect = pygame.Rect(
+      self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
+    self.writing = False
+    self.writingBuffer = ""
 
 def clamp(self, val):
-
+  return max(self.min, min(self.max, val))
 
