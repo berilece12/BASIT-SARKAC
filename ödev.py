@@ -52,3 +52,8 @@ class Slider:
 def get_value(self):
 
   return self.min + (self.max - self.min) * self.yüzde / 100
+
+# Draw Slider Texts
+
+
+
