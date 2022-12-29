@@ -43,6 +43,4 @@ class Slider:
     self.writing = False
     self.writingBuffer = ""
 
-def clamp(self, val):
-  return max(self.min, min(self.max, val))
-
+def get_value(self):
