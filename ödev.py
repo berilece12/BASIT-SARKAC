@@ -33,6 +33,12 @@ değer_çubuğu_uzunluğu = 250
 class Slider:
   def __init__(self, x, y, metin, minVal, maxVal):
     self.x = x
+    
+   # Draw Slider Texts 
+    
+    
+    
+    
     self.y = y
     self.text = metin
     self.min = minVal
