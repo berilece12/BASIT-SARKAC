@@ -34,7 +34,7 @@ class Slider:
   def __init__(self, x, y, metin, minVal, maxVal):
     self.x = x
     
-   # Draw Slider Texts 
+  
     
     
     
@@ -50,4 +50,5 @@ class Slider:
     self.writingBuffer = ""
 
 def get_value(self):
+
   return self.min + (self.max - self.min) * self.yüzde / 100
