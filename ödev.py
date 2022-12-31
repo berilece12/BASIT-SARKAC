@@ -66,5 +66,6 @@ def get_value(self):
               15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
       pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
   
+   if self.writingBuffer == "":
   
  
