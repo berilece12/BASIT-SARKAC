@@ -60,4 +60,9 @@ def get_value(self):
 
 # Draw Slider Circles
         pygame.draw.circle(screen, (0, 0, 0), (locationX, self.y), 15)
+  
+   # Draw Slider Texts
+    draw_text(screen, self.metin, (895, self.y-5),
+  
+  
  
