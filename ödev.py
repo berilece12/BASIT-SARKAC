@@ -60,11 +60,10 @@ def get_value(self):
 
 # Draw Slider Circles
         pygame.draw.circle(screen, (0, 0, 0), (locationX, self.y), 15)
-  
-   # Draw Slider Texts
-    draw_text(screen, self.metin, (895, self.y-5),
-              15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-      pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
-  
-  
- 
+  # Draw Slider Texts
+        draw_text(screen, self.metin, (895, self.y-5),
+                  15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
+        pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
+
+         if self.writingBuffer == "":
+          val = self.get_value()
