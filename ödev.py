@@ -68,7 +68,6 @@ def get_value(self):
 
          if self.writingBuffer == "":
           val = self.get_value()
-
-  
+           if self.metin == "İp Uzunluğu":
  
 
