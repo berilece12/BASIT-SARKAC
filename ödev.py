@@ -1,5 +1,6 @@
 import pygame
 import math
+import os
 pygame.init()
 
 #sarkacı tanımlamak gerekiyor.
@@ -21,7 +22,7 @@ pygame.display.set_caption(APP_NAME)
 
 BACKGROUND = pygame.image.load(os.path.join("image", "background.jpg"))
 BACKGROUND_IMAGE = pygame.transform.scale(
-  BACKGROUND, (HEIGHT, HEIGHT))
+  BACKGROUND, (uzunluk, uzunluk))
 BACKGROUND_IMAGE.set_alpha(50)
 
 top_için_başlangiç_x, top_için_başlangiç_y = uzunluk / 2, ipin_başlangiç_uzunluğu + 20
@@ -33,12 +34,6 @@ değer_çubuğu_uzunluğu = 250
 class Slider:
   def __init__(self, x, y, metin, minVal, maxVal):
     self.x = x
-    
-  
-    
-    
-    
-    
     self.y = y
     self.text = metin
     self.min = minVal
@@ -50,16 +45,15 @@ class Slider:
     self.writingBuffer = ""
 
 def get_value(self):
-
   return self.min + (self.max - self.min) * self.yüzde / 100
 
 # Draw Slider Texts
- draw_text(screen, self.metin, (895, self.y-5),
+draw_text(screen, self.metin, (895, self.y-5),
             15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-     pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
+      pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
 
 # Draw Slider Circles
-        pygame.draw.circle(screen, (0, 0, 0), (locationX, self.y), 15)
+        pygame.draw.circle(ekran , (0, 0, 0), (locationX, self.y), 15)
 <<<<<<< HEAD
   # Draw Slider Texts
         draw_text(screen, self.metin, (895, self.y-5),
@@ -68,6 +62,21 @@ def get_value(self):
 
          if self.writingBuffer == "":
           val = self.get_value()
+<<<<<<< HEAD
            if self.metin == "İp Uzunluğu":
+=======
+
+if self.metin == "İp Uzunluğu":
+                val /= ip_uzunluğu_bölücü
+            draw_text(screen, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
+                      20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
+        else:
+            draw_text(screen, self.writingBuffer, (self.valueRect.centerx, self.valueRect.y),
+                      20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
+
+
+
+  
+>>>>>>> b8bc64c727ed3345f3678d9e9921cc9d31761320
  
 
