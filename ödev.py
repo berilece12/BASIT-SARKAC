@@ -107,3 +107,4 @@ if self.metin == "İp Uzunluğu":
                             self.writingBuffer = ""
                         except:
                             self.writingBuffer = ""
+
