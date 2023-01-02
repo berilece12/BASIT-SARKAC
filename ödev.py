@@ -62,6 +62,9 @@ draw_text(ekran, self.metin, (895, self.y-5),
 
          if self.writingBuffer == "":
           val = self.get_value()
+<<<<<<< HEAD
+           if self.metin == "İp Uzunluğu":
+=======
 
 if self.metin == "İp Uzunluğu":
                 val /= ip_uzunluğu_bölücü
@@ -72,6 +75,11 @@ if self.metin == "İp Uzunluğu":
                       20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
 
 
+
+<<<<<<< HEAD
+  
+>>>>>>> b8bc64c727ed3345f3678d9e9921cc9d31761320
+
  def moveIfColliding(self, mousePos):  # returns true if it was moved
         if pygame.mouse.get_pressed()[0] != 1:
             return False
@@ -80,15 +88,22 @@ if self.metin == "İp Uzunluğu":
             self.yüzde = (mousePos[0] - 900) / 2.5
             return True
         return False
+=======
+>>>>>>> 2dd8af6335eed96f0c3901a66086141cfc89660c
+ 
 
-    def update(self, gameEvents):
-        mousePos = pygame.mouse.get_pos()
-        self.moveIfColliding(mousePos)
-
-click = pygame.mouse.get_pressed()
-        if click[0] == 1:
-
-            if self.valueRect.left < mousePos[0] < self.valueRect.right and self.valueRect.top < mousePos[1] < self.valueRect.bottom:
-                self.writing = True
-            else:
-                self.writing = False
+ if self.writing:
+            if gameEvents.type == pygame.KEYDOWN:
+                if gameEvents.key == pygame.K_RETURN:
+                    self.writing = False
+                    if self.writingBuffer != "":
+                        try:
+                            v = float(self.writingBuffer)
+                            if self.metin == "İp Uzunluğu":
+                                v *= ip_uzunluğu_bölücü
+                            v = self.clamp(v)
+                            self.yüzde = (v - self.min) / \
+                                (self.max - self.min) * 100
+                            self.writingBuffer = ""
+                        except:
+                            self.writingBuffer = ""
