@@ -3,5 +3,3 @@ FİNAL ÖDEVİ
 
 
 
-başaramadık abi
-hallederizzzz
