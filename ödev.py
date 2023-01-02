@@ -48,9 +48,9 @@ def get_value(self):
   return self.min + (self.max - self.min) * self.yüzde / 100
 
 # Draw Slider Texts
-draw_text(screen, self.metin, (895, self.y-5),
+draw_text(ekran, self.metin, (895, self.y-5),
             15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-      pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
+      pygame.draw.rect(ekran, (255, 0, 255), self.valueRect, width=1)
 
 # Draw Slider Circles
         pygame.draw.circle(ekran , (0, 0, 0), (locationX, self.y), 15)
@@ -76,6 +76,7 @@ if self.metin == "İp Uzunluğu":
 
 
 
+<<<<<<< HEAD
   
 >>>>>>> b8bc64c727ed3345f3678d9e9921cc9d31761320
 
@@ -87,5 +88,7 @@ if self.metin == "İp Uzunluğu":
             self.yüzde = (mousePos[0] - 900) / 2.5
             return True
         return False
+=======
+>>>>>>> 2dd8af6335eed96f0c3901a66086141cfc89660c
  
 
