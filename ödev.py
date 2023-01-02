@@ -81,4 +81,8 @@ if self.metin == "İp Uzunluğu":
             return True
         return False
 
+    def update(self, gameEvents):
+        mousePos = pygame.mouse.get_pos()
+        self.moveIfColliding(mousePos)
+
 
