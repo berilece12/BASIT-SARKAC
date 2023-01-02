@@ -78,5 +78,14 @@ if self.metin == "İp Uzunluğu":
 
   
 >>>>>>> b8bc64c727ed3345f3678d9e9921cc9d31761320
+
+ def moveIfColliding(self, mousePos):  # returns true if it was moved
+        if pygame.mouse.get_pressed()[0] != 1:
+            return False
+        locationX = 900 + self.yüzde * 2.5
+        if self.x + değer_çubuğu_uzunluğu > mousePos[0] > self.x and self.y + 15 > mousePos[1] > self.y - 15 and locationX + 15 > mousePos[0] > locationX - 15 and self.y + 15 > mousePos[1] > self.y - 15:
+            self.yüzde = (mousePos[0] - 900) / 2.5
+            return True
+        return False
  
 
