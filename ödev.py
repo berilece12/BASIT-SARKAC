@@ -88,3 +88,7 @@ if self.metin == "İp Uzunluğu":
 click = pygame.mouse.get_pressed()
         if click[0] == 1:
 
+            if self.valueRect.left < mousePos[0] < self.valueRect.right and self.valueRect.top < mousePos[1] < self.valueRect.bottom:
+                self.writing = True
+            else:
+                self.writing = False
