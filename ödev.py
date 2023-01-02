@@ -62,9 +62,6 @@ draw_text(ekran, self.metin, (895, self.y-5),
 
          if self.writingBuffer == "":
           val = self.get_value()
-<<<<<<< HEAD
-           if self.metin == "İp Uzunluğu":
-=======
 
 if self.metin == "İp Uzunluğu":
                 val /= ip_uzunluğu_bölücü
@@ -75,11 +72,6 @@ if self.metin == "İp Uzunluğu":
                       20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
 
 
-
-<<<<<<< HEAD
-  
->>>>>>> b8bc64c727ed3345f3678d9e9921cc9d31761320
-
  def moveIfColliding(self, mousePos):  # returns true if it was moved
         if pygame.mouse.get_pressed()[0] != 1:
             return False
@@ -88,7 +80,5 @@ if self.metin == "İp Uzunluğu":
             self.yüzde = (mousePos[0] - 900) / 2.5
             return True
         return False
-=======
->>>>>>> 2dd8af6335eed96f0c3901a66086141cfc89660c
- 
+
 
