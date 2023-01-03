@@ -108,7 +108,7 @@ if self.metin == "İp Uzunluğu":
                         except:
                             self.writingBuffer = ""
 
-elif gameEvents.key == pygame.K_BACKSPACE
+elif gameEvents.key == pygame.K_BACKSPACE:
 
                     self.writingBuffer = self.writingBuffer[:-1]
 
