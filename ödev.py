@@ -118,5 +118,7 @@ elif gameEvents.key == pygame.K_BACKSPACE:
 
         return self.get_value()
 
-        
+
+ boyutlar = genişlik, uzunluk = 1250, 800
+
                 
