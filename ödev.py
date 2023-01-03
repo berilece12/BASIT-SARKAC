@@ -44,55 +44,59 @@ class Slider:
     self.writing = False
     self.writingBuffer = ""
 
-def get_value(self):
-  return self.min + (self.max - self.min) * self.yüzde / 100
+  def get_value(self):
+    return self.min + (self.max - self.min) * self.yüzde / 100
 
-# Draw Slider Texts
-draw_text(ekran, self.metin, (895, self.y-5),
+  def draw(self, screen):
+      x_konumu = 900 + self.yüzde * 2.5
+      draw_line(screen, (self.x, self.y), (self.x +
+                  değer_çubuğu_uzunluğu, self.y), (0, 0, 0), 5)
+
+
+    # Draw Slider Texts
+    draw_text(ekran, self.metin, (895, self.y-5),
             15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-      pygame.draw.rect(ekran, (255, 0, 255), self.valueRect, width=1)
+    pygame.draw.rect(ekran, (255, 0, 255), self.valueRect, width=1)
 
-# Draw Slider Circles
-        pygame.draw.circle(ekran , (0, 0, 0), (locationX, self.y), 15)
-<<<<<<< HEAD
-  # Draw Slider Texts
-        draw_text(screen, self.metin, (895, self.y-5),
+    # Draw Slider Circles
+    pygame.draw.circle(ekran , (0, 0, 0), (locationX, self.y), 15)
+
+
+   # Draw Slider Texts
+    draw_text(screen, self.metin, (895, self.y-5),
                   15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-        pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
+    pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
 
-         if self.writingBuffer == "":
-          val = self.get_value()
-<<<<<<< HEAD
-           if self.metin == "İp Uzunluğu":
-=======
-
-if self.metin == "İp Uzunluğu":
-                val /= ip_uzunluğu_bölücü
-            draw_text(screen, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
+    if self.writingBuffer == "":
+        val = self.get_value()
+        if self.metin == "İp Uzunluğu":
+          val /= ip_uzunluğu_bölücü
+          draw_text(screen, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
                       20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
         else:
-            draw_text(screen, self.writingBuffer, (self.valueRect.centerx, self.valueRect.y),
+          draw_text(screen, self.writingBuffer, (self.valueRect.centerx, self.valueRect.y),
                       20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
 
-
-
-<<<<<<< HEAD
-  
->>>>>>> b8bc64c727ed3345f3678d9e9921cc9d31761320
-
- def moveIfColliding(self, mousePos):  # returns true if it was moved
-        if pygame.mouse.get_pressed()[0] != 1:
-            return False
-        locationX = 900 + self.yüzde * 2.5
-        if self.x + değer_çubuğu_uzunluğu > mousePos[0] > self.x and self.y + 15 > mousePos[1] > self.y - 15 and locationX + 15 > mousePos[0] > locationX - 15 and self.y + 15 > mousePos[1] > self.y - 15:
-            self.yüzde = (mousePos[0] - 900) / 2.5
-            return True
+    def moveIfColliding(self, mousePos):  # returns true if it was moved
+      if pygame.mouse.get_pressed()[0] != 1:
         return False
-=======
->>>>>>> 2dd8af6335eed96f0c3901a66086141cfc89660c
- 
+      locationX = 900 + self.yüzde * 2.5
+      if self.x + değer_çubuğu_uzunluğu > mousePos[0] > self.x and self.y + 15 > mousePos[1] > self.y - 15 and locationX + 15 > mousePos[0] > locationX - 15 and self.y + 15 > mousePos[1] > self.y - 15:
+        self.yüzde = (mousePos[0] - 900) / 2.5
+        return True
+      return False
 
- if self.writing:
+    def update(self, gameEvents):
+        mousePos = pygame.mouse.get_pos()
+        self.moveIfColliding(mousePos)
+
+        click = pygame.mouse.get_pressed()
+        if click[0] == 1:
+            if self.valueRect.left < mousePos[0] < self.valueRect.right and self.valueRect.top < mousePos[1] < self.valueRect.bottom:
+                self.writing = True
+            else:
+                self.writing = False
+        if self.writing:
             if gameEvents.type == pygame.KEYDOWN:
                 if gameEvents.key == pygame.K_RETURN:
                     self.writing = False
@@ -108,24 +112,11 @@ if self.metin == "İp Uzunluğu":
                         except:
                             self.writingBuffer = ""
 
-elif gameEvents.key == pygame.K_BACKSPACE:
-
+                elif gameEvents.key == pygame.K_BACKSPACE:
                     self.writingBuffer = self.writingBuffer[:-1]
-
                 else:
-
                     self.writingBuffer += gameEvents.unicode
 
         return self.get_value()
 
-
- boyutlar = genişlik, uzunluk = 1250, 800
-APP_NAME = "Sarkaç"
-FPS = 60
-yer_çekimi = 9.8
-
-
-ipin_başlangiç_uzunluğu = 400
-ip_uzunluğu_bölücü = 200
-ip_bağlanti_konumu = (uzunluk // 2, 20)
 
