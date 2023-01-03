@@ -125,4 +125,5 @@ FPS = 60
 yer_çekimi = 9.8
 
 
-                
+ipin_başlangiç_uzunluğu = 400
+            
