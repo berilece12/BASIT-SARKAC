@@ -126,4 +126,5 @@ yer_çekimi = 9.8
 
 
 ipin_başlangiç_uzunluğu = 400
-            
+ ip_uzunluğu_bölücü = 200
+         
