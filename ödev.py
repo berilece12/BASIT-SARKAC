@@ -116,6 +116,7 @@ elif gameEvents.key == pygame.K_BACKSPACE
 
                     self.writingBuffer += gameEvents.unicode
 
+        return self.get_value()
 
         
                 
