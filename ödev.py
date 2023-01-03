@@ -112,4 +112,10 @@ elif gameEvents.key == pygame.K_BACKSPACE
 
                     self.writingBuffer = self.writingBuffer[:-1]
 
+                else:
+
+                    self.writingBuffer += gameEvents.unicode
+
+
+        
                 
