@@ -121,5 +121,6 @@ elif gameEvents.key == pygame.K_BACKSPACE:
 
  boyutlar = genişlik, uzunluk = 1250, 800
 APP_NAME = "Sarkaç"
+FPS = 60
 
                 
