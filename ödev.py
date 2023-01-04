@@ -51,10 +51,14 @@ class Slider:
   def get_value(self):
     return self.min + (self.max - self.min) * self.yüzde / 100
 
-  def draw(self, screen):
+  def draw(self, ekran):
       x_konumu = 900 + self.yüzde * 2.5
-      draw_line(screen, (self.x, self.y), (self.x +
+      draw_line(ekran, (self.x, self.y), (self.x +
                   değer_çubuğu_uzunluğu, self.y), (0, 0, 0), 5)
+
+     # Draw Slider Circles
+    pygame.draw.circle(ekran, (0, 0, 0), (locationX, self.y), 15)
+
 
 
     # Draw Slider Texts
@@ -62,23 +66,15 @@ class Slider:
             15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
     pygame.draw.rect(ekran, (255, 0, 255), self.valueRect, width=1)
 
-    # Draw Slider Circles
-    pygame.draw.circle(ekran , (0, 0, 0), (locationX, self.y), 15)
-
-
-   # Draw Slider Texts
-    draw_text(screen, self.metin, (895, self.y-5),
-                  15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-    pygame.draw.rect(screen, (255, 0, 255), self.valueRect, width=1)
-
+   
     if self.writingBuffer == "":
         val = self.get_value()
         if self.metin == "İp Uzunluğu":
           val /= ip_uzunluğu_bölücü
-          draw_text(screen, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
+          draw_text(ekran, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
                       20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
         else:
-          draw_text(screen, self.writingBuffer, (self.valueRect.centerx, self.valueRect.y),
+          draw_text(ekran, self.writingBuffer, (self.valueRect.centerx, self.valueRect.y),
                       20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
 
     def moveIfColliding(self, mousePos):  # returns true if it was moved
@@ -131,4 +127,3 @@ yer_çekimi = 9.8
 ipin_başlangiç_uzunluğu = 400
 ip_uzunluğu_bölücü = 200
 ip_bağlanti_konumu = (uzunluk // 2, 20)
-
