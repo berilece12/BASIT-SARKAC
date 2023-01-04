@@ -132,3 +132,8 @@ def draw_arc(ekran, açı, ip_uzunluğu):
     draw_dashed_line(ekran, ip_bağlanti_konumu, l[0], (0, 0, 0), 1)
     draw_dashed_line(ekran, ip_bağlanti_konumu, l[-1], (0, 0, 0), 1)
 
+def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCenterHorizontal=False, alignCenterVertical=False):
+
+    font = pygame.font.SysFont(pygame.font.get_default_font(), boyutlar)
+
+    text = font.render(textstr, True, renk)
