@@ -44,10 +44,6 @@ class Slider:
     self.writing = False
     self.writingBuffer = ""
 
-  def clamp(self, val):
-    return max(self.min, min(self.max, val))
-
-
   def get_value(self):
     return self.min + (self.max - self.min) * self.yüzde / 100
 
@@ -93,6 +89,7 @@ class Slider:
         click = pygame.mouse.get_pressed()
         if click[0] == 1:
             if self.valueRect.left < mousePos[0] < self.valueRect.right and self.valueRect.top < mousePos[1] < self.valueRect.bottom:
+                
                 self.writing = True
             else:
                 self.writing = False
@@ -117,7 +114,7 @@ class Slider:
                 else:
                     self.writingBuffer += gameEvents.unicode
 
-        return self.get_value()
+     return self.get_value()
 
 boyutlar = genişlik, uzunluk = 1250, 800
 APP_NAME = "Sarkaç"
