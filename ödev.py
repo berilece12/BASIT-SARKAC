@@ -159,3 +159,7 @@ def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCent
         y = konum[1]
 
     screen.blit(text, (x, y))
+
+
+def draw_ball(ekran, pos):
+    pygame.draw.circle(ekran, (255, 0, 0), pos, 20)
