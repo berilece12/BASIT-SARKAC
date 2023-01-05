@@ -137,3 +137,8 @@ def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCent
     font = pygame.font.SysFont(pygame.font.get_default_font(), boyutlar)
 
     text = font.render(textstr, True, renk)
+
+
+    if alignRight:
+
+        x = konum[0] - text.get_genişlik()
