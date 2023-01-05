@@ -163,3 +163,6 @@ def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCent
 
 def draw_ball(ekran, pos):
     pygame.draw.circle(ekran, (255, 0, 0), pos, 20)
+
+def draw_line(ekran, pos1, pos2, renk, width=1):
+    pygame.draw.line(ekran, renk, pos1, pos2, width)
