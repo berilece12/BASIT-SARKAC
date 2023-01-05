@@ -146,4 +146,6 @@ def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCent
     elif alignCenterHorizontal:
 
         x = konum[0] - text.get_genişlik() // 2
+    else:
 
+        x = konum[0]
