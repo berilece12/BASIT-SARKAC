@@ -152,4 +152,10 @@ def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCent
 
     if alignCenterVertical:  # Yukarıdan Aşağı
 
-        y = konum[1] + text.get_uzunluk() // 2   
+        y = konum[1] + text.get_uzunluk() // 2  
+
+    else:
+
+        y = konum[1]
+
+    screen.blit(text, (x, y))
