@@ -151,5 +151,5 @@ def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCent
         x = konum[0]
 
     if alignCenterVertical:  # Yukarıdan Aşağı
-    
-        y = pos[1] + text.get_height() // 2   
+
+        y = konum[1] + text.get_uzunluk() // 2   
