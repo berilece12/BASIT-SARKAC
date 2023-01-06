@@ -166,3 +166,7 @@ def draw_ball(ekran, konum):
 
 def draw_line(ekran, konum1, konum2, renk, genişlik=1):
     pygame.draw.line(ekran, renk, konum1, konum2, genişlik)
+
+def draw_rope_attachment(ekran):
+    pygame.draw.rect(ekran, (0, 0, 0),
+                     (ip_bağlanti_konumu[0] - 7, 0, 14, 25))
