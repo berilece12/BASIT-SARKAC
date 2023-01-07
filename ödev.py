@@ -173,3 +173,15 @@ def draw_rope_attachment(ekran):
     pygame.draw.rect(ekran, (0, 0, 0),
                      (ip_bağlanti_konumu[0] - 7, 0, 14, 25))
 >>>>>>> 08b2db15c40c0d1c4e0aab72a2800fbc7e49d366
+
+def draw(_top_pozisyonu, _ip_genişliği):
+
+    ekran.blit(BACKGROUND_IMAGE, (0, 0))
+    # Draw Rope:
+    draw_dashed_line(ekran, ip_bağlanti_konumu,
+                     (ip_bağlanti_konumu[0], uzunluk * 2 / 3), (0, 0, 0), _ip_genişliği)
+    draw_rope_attachment(ekran)
+    draw_line(ekran, (ip_bağlanti_konumu[0] - 1, ip_bağlanti_konumu[1]), (_top_pozisyonu[0] - 1,
+              _top_pozisyonu[1]), (0, 0, 0), _ip_genişliği)
+    # Draw Ball:
+    draw_ball(ekran, _top_pozisyonu)
