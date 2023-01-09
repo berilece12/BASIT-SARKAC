@@ -182,3 +182,8 @@ def draw(_top_pozisyonu, _ip_genişliği):
               _top_pozisyonu[1]), (0, 0, 0), _ip_genişliği)
     # Draw Ball:
     draw_ball(ekran, _top_pozisyonu)
+
+
+def get_pendulum_period(ip_uzunluğu):
+    return 2 * math.pi * math.sqrt((ip_uzunluğu / ip_uzunluğu_bölücü)/yer_çekimi)
+
