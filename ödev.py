@@ -101,9 +101,6 @@ class Slider:
                             self.writingBuffer = ""
                         except:
                             self.writingBuffer = ""
-
-<<<<<<< HEAD
-=======
                 elif gameEvents.key == pygame.K_BACKSPACE:
                     self.writingBuffer = self.writingBuffer[:-1]
                 else:
@@ -159,7 +156,7 @@ def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCent
     else:
 
         y = konum[1]
-
+        
     screen.blit(text, (x, y))
 
 
@@ -172,7 +169,7 @@ def draw_line(ekran, konum1, konum2, renk, genişlik=1):
 def draw_rope_attachment(ekran):
     pygame.draw.rect(ekran, (0, 0, 0),
                      (ip_bağlanti_konumu[0] - 7, 0, 14, 25))
->>>>>>> 08b2db15c40c0d1c4e0aab72a2800fbc7e49d366
+
 
 def draw(_top_pozisyonu, _ip_genişliği):
 
