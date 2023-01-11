@@ -1,6 +1,7 @@
 import pygame
-import math
 import os
+import math
+
 pygame.init()
 
 #sarkacı tanımlamak gerekiyor.
@@ -41,6 +42,7 @@ class Slider:
             self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
         self.writing = False
         self.writingBuffer = ""
+
 
     def draw(self, ekran):
         locationX = 900 + self.yüzde * 2.5
@@ -175,6 +177,7 @@ def draw(_top_pozisyonu, _ip_genişliği):
 
     ekran.blit(BACKGROUND_IMAGE, (0, 0))
     # Draw Rope:
+    
     draw_dashed_line(ekran, ip_bağlanti_konumu,
                      (ip_bağlanti_konumu[0], uzunluk * 2 / 3), (0, 0, 0), _ip_genişliği)
     draw_rope_attachment(ekran)
@@ -186,4 +189,10 @@ def draw(_top_pozisyonu, _ip_genişliği):
 
 def get_pendulum_period(ip_uzunluğu):
     return 2 * math.pi * math.sqrt((ip_uzunluğu / ip_uzunluğu_bölücü)/yer_çekimi)
+
+def move_ball_to_mouse():
+    mousePos = pygame.mouse.get_pos()
+    angleRad = math.atan2(
+        mousePos[0] - ip_bağlanti_konumu[0], mousePos[1] - ip_bağlanti_konumu[1])
+    return angleRad
 
