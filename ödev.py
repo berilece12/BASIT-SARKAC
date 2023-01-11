@@ -186,6 +186,22 @@ def draw(_top_pozisyonu, _ip_genişliği):
     # Draw Ball:
     draw_ball(ekran, _top_pozisyonu)
 
+def write_values_to_screen(angleMax, angle, angularVelocity, ropeLen, timePassed, period):
+    draw_text(ekran, "Maksimum Açı: " + str(round(math.degrees(angleMax), 2)
+                                             ) + "°", (10, 10), 20, (0, 0, 0))
+    draw_text(ekran, "Anlık Açı: " + str(round(math.degrees(angle), 2)) + "°",
+              (10, 30), 20, (0, 0, 0))
+    draw_text(ekran, "Açısal Hız: " + str(round(angularVelocity, 2)) + " rad/s",
+              (10, 50), 20, (0, 0, 0))
+    draw_text(ekran, "Geçen Süre: " + str(round(timePassed, 2)) + "sn",
+              (10, 70), 20, (0, 0, 0))
+    draw_text(ekran, "Period: " + str(round(period, 2)) + "sn",
+              (10, 90), 20, (0, 0, 0))
+    draw_text(ekran, "İp Uzunluğu: " + str(round((ropeLen / ip_uzunluğu_bölücü), 2)) + "m",
+              (10, 110), 20, (0, 0, 0))
+    draw_text(ekran, "Yer Çekimi: " + str(round(yer_çekimi, 2)) +
+              "m/s^2", (10, 130), 20, (0, 0, 0))
+
 
 def get_pendulum_period(ip_uzunluğu):
     return 2 * math.pi * math.sqrt((ip_uzunluğu / ip_uzunluğu_bölücü)/yer_çekimi)
