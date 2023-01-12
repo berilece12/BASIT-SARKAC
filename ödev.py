@@ -212,4 +212,10 @@ def move_ball_to_mouse():
         mousePos[0] - ip_bağlanti_konumu[0], mousePos[1] - ip_bağlanti_konumu[1])
     return angleRad
 
-
+def move_ball_to_equation(ip_uzunluğu, açi, geçen_süre):
+    angleNow = açi * \
+        math.cos(math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * geçen_süre)
+    angularVelocity = -açi * \
+        math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * \
+        math.sin(math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * geçen_süre)
+    return angleNow, angularVelocity
