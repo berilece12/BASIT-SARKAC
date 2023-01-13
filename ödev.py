@@ -219,3 +219,7 @@ def move_ball_to_equation(ip_uzunluğu, açi, geçen_süre):
         math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * \
         math.sin(math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * geçen_süre)
     return angleNow, angularVelocity
+  
+  
+  
+  
