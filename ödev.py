@@ -220,6 +220,7 @@ def move_ball_to_equation(ip_uzunluğu, açi, geçen_süre):
         math.sin(math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * geçen_süre)
     return angleNow, angularVelocity
   
-  
+def get_ball_pos(açı, ip_uzunluğu):
+    return (ip_bağlanti_konumu[0] + ip_uzunluğu + ip_uzunluğu * math.cos(açı))
   
   
