@@ -7,7 +7,7 @@ pygame.init()
 #sarkacı tanımlamak gerekiyor.
 #önce ekran
 
-boyutlar = genişlik, uzunluk = 1250, 800
+screen = genişlik, uzunluk = 1250, 800
 APP_NAME = "Sarkaç"
 FPS = 60
 yer_çekimi = 9.8
@@ -15,7 +15,7 @@ yer_çekimi = 9.8
 ipin_başlangiç_uzunluğu = 400
 ip_uzunluğu_bölücü = 200
 ip_bağlanti_konumu = (uzunluk // 2, 20)
-ekran = pygame.display.set_mode(boyutlar)
+ekran = pygame.display.set_mode(screen)
 pygame.display.set_caption(APP_NAME)
 
 #  sarkaç, saniyedeki görüntü sayısı, yerçelkimi ve ipi tanımladık
@@ -110,7 +110,7 @@ class Slider:
 
         return self.get_value()
 
-boyutlar = genişlik, uzunluk = 1250, 800
+screen = genişlik, uzunluk = 1250, 800
 APP_NAME = "Sarkaç"
 FPS = 60
 yer_çekimi = 9.8
@@ -222,5 +222,14 @@ def move_ball_to_equation(ip_uzunluğu, açi, geçen_süre):
   
 def get_ball_pos(açı, ip_uzunluğu):
     return (ip_bağlanti_konumu[0] + ip_uzunluğu + ip_uzunluğu * math.cos(açı))
+
+
+def main():
+    global yer_çekimi
+    ip_uzunluğu = ipin_başlangiç_uzunluğu
+    ip_genişliği = 2
+    ballobj = pygame.draw.circle(
+        ekran, (0, 0, 0), (top_için_başlangiç_x, top_için_başlangiç_y), 10)
+
   
   
