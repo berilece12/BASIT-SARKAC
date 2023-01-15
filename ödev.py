@@ -242,7 +242,7 @@ def main():
     açı = 0
     _angleNow = 0
     _angularVelocity = 0
-    ballMass = 1
+    ballMass =  1
 
   
   
