@@ -248,4 +248,9 @@ def main():
     ropeLenSlider = Slider(900, 100, "İp Uzunluğu", 200, 600)
     gravitySlider = Slider(900, 200, "Yer Çekimi", 0.1, 25)
 
+
+    while isRunning:
+        clock.tick(FPS)
+        periyot = get_pendulum_period(ip_uzunluğu)
+  
   
