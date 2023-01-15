@@ -244,8 +244,8 @@ def main():
     _angularVelocity = 0
     ballMass =  1
 
-  
+    # Slider Değişkenleri
+    ropeLenSlider = Slider(900, 100, "İp Uzunluğu", 200, 600)
+    gravitySlider = Slider(900, 200, "Yer Çekimi", 0.1, 25)
 
-
-  
   
