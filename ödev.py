@@ -231,5 +231,18 @@ def main():
     ballobj = pygame.draw.circle(
         ekran, (0, 0, 0), (top_için_başlangiç_x, top_için_başlangiç_y), 10)
 
+        # Oyun Değişkenleri
+    clock = pygame.time.Clock()
+    isRunning = True
+    timePassed = 0.0
+
+    # Fizik Değişkenleri
+    periyot = 0
+    isSwinging = False
+    açı = 0
+    _angleNow = 0
+    _angularVelocity = 0
+    ballMass = 1
+
   
   
