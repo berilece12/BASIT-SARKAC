@@ -260,19 +260,19 @@ def main():
             if event.type == pygame.QUIT:
                 isRunning = False
                 break
-          if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     isSwinging = not isSwinging
-          if event.type == pygame.MOUSEBUTTONUP:
+            if event.type == pygame.MOUSEBUTTONUP:
                 if pygame.mouse.get_pos()[0] < 900:
                     açı = move_ball_to_mouse()
                     isSwinging = True
   
-          if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pressed()[0]:
             mousePos = pygame.mouse.get_pos()
             if mousePos[0] <= 800:
                 isSwinging = False
                 angle = _angleNow = move_ball_to_mouse()
-                period = get_pendulum_period(ropeLength)
+                period = get_pendulum_period(ip_uzunluğu)
                 timePassed = 0.0
   
