@@ -253,11 +253,11 @@ def main():
         clock.tick(FPS)
         periyot = get_pendulum_period(ip_uzunluğu)
 
-          for event in pygame.event.get():
+        for event in pygame.event.get():
             ip_uzunluğu = ropeLenSlider.update(event)
             yer_çekimi = gravitySlider.update(event)
 
-          if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:
                 isRunning = False
                 break
           if event.type == pygame.KEYDOWN:
@@ -268,4 +268,11 @@ def main():
                     açı = move_ball_to_mouse()
                     isSwinging = True
   
+          if pygame.mouse.get_pressed()[0]:
+            mousePos = pygame.mouse.get_pos()
+            if mousePos[0] <= 800:
+                isSwinging = False
+                angle = _angleNow = move_ball_to_mouse()
+                period = get_pendulum_period(ropeLength)
+                timePassed = 0.0
   
