@@ -18,7 +18,7 @@ ip_bağlanti_konumu = (uzunluk // 2, 20)
 ekran = pygame.display.set_mode(screen)
 pygame.display.set_caption(APP_NAME)
 
-#  sarkaç, saniyedeki görüntü sayısı, yerçelkimi ve ipi tanımladık
+# sarkaç, saniyedeki görüntü sayısı, yerçekimi ve ipi tanımladık
 #arka planı tanımla
 
 BACKGROUND = pygame.image.load(os.path.join("image", "background.jpg"))
@@ -42,6 +42,8 @@ class Slider:
             self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
         self.writing = False
         self.writingBuffer = ""
+    
+# fonksiyonu ile değer aralıklarını minimum ve maksimum değerler arasına sıkıştırdık.
     def clamp(self, val):
         return max(self.min, min(self.max, val))
 
@@ -53,14 +55,15 @@ class Slider:
         draw_line(ekran, (self.x, self.y), (self.x +
                   değer_çubuğu_uzunluğu, self.y), (0, 0, 0), 5)
 
-        # Draw Slider Circles
+        # Draw Slider Circles (değer çubuğundaki topların genişliği,boyutu)
         pygame.draw.circle(ekran, (0, 0, 0), (locationX, self.y), 15)
 
-        # Draw Slider Texts
+        # Draw Slider Texts ( değer çubuğu yanı yazılarının büyüklüğü)
         draw_text(ekran, self.text, (895, self.y-5),
                   15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
         pygame.draw.rect(ekran, (255, 0, 255), self.valueRect, width=1)
 
+# değer çubuğuna girdiğimiz değerlerin -kutu içindeki- büyüklükleri
         if self.writingBuffer == "":
             val = self.get_value()
             if self.text == "İp Uzunluğu":
@@ -154,7 +157,7 @@ def draw_text(screen, textstr, konum, boyutlar, renk, alignRight=False, alignCen
         
     screen.blit(text, (x, y))
 
-
+# sarkaç ucu topun genişliği
 def draw_ball(ekran, konum):
     pygame.draw.circle(ekran, (255, 0, 0), konum, 20)
 
@@ -169,7 +172,7 @@ def draw_dashed_line(ekran, pos1, pos2, color, width=1, space=10):
         pygame.draw.line(ekran, color, (pos1[0] + i * xDiff, pos1[1] + i * yDiff), (pos1[0] + (
             i + space / 2) * xDiff, pos1[1] + (i + space / 2) * yDiff), width)
 
-
+#ipin bağlı olduğu kalasın boyutlandırması
 def draw_rope_attachment(ekran):
     pygame.draw.rect(ekran, (0, 0, 0),
                      (ip_bağlanti_konumu[0] - 7, 0, 14, 25))
@@ -182,7 +185,7 @@ def draw(_top_pozisyonu, _ip_genişliği):
     ekran.blit(BACKGROUND_IMAGE, (0, 0))
     # Draw Rope:
     
-    draw_dashed_line(ekran, ip_bağlanti_konumu,
+    draw_dashed_line(ekran, ip_bağlanti_konumu, #merkez eksen kesikli çizgi uzunluğu
                      (ip_bağlanti_konumu[0], uzunluk * 2 / 3), (0, 0, 0), _ip_genişliği)
     draw_rope_attachment(ekran)
     draw_line(ekran, (ip_bağlanti_konumu[0] - 1, ip_bağlanti_konumu[1]), (_top_pozisyonu[0] - 1,
@@ -248,8 +251,8 @@ def main():
     ballMass =  1
 
     # Slider Değişkenleri
-    ropeLenSlider = Slider(900, 100, "İp Uzunluğu", 200, 600)
-    gravitySlider = Slider(900, 200, "Yer Çekimi", 0.1, 25)
+    ropeLenSlider = Slider(900, 100, "İp Uzunluğu", 200, 600) #ip başlanggiç değeri
+    gravitySlider = Slider(900, 200, "Yer Çekimi", 0.1, 25)#yerçekimi başlangiç değeri
 
 
     while isRunning:
