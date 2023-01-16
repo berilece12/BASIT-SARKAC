@@ -42,7 +42,11 @@ class Slider:
             self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
         self.writing = False
         self.writingBuffer = ""
+def clamp(self, val):
+        return max(self.min, min(self.max, val))
 
+        def get_value(self):
+        return self.min + (self.max - self.min) * self.yüzde / 100
 
     def draw(self, ekran):
         locationX = 900 + self.yüzde * 2.5
