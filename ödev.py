@@ -42,10 +42,10 @@ class Slider:
             self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
         self.writing = False
         self.writingBuffer = ""
-def clamp(self, val):
+    def clamp(self, val):
         return max(self.min, min(self.max, val))
 
-        def get_value(self):
+    def get_value(self):
         return self.min + (self.max - self.min) * self.yüzde / 100
 
     def draw(self, ekran):
@@ -224,18 +224,17 @@ def move_ball_to_equation(ip_uzunluğu, açi, geçen_süre):
         math.sin(math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * geçen_süre)
     return angleNow, angularVelocity
   
-def get_ball_pos(açı, ip_uzunluğu):
-    return (ip_bağlanti_konumu[0] + ip_uzunluğu * math.sin(açı), ipin_başlangiç_uzunluğu[1] +  ip_uzunluğu * math.cos(açı))
-
+def get_ball_pos(angle, ropeLength):
+    return (ip_bağlanti_konumu[0] + ropeLength * math.sin(angle), ip_bağlanti_konumu[1] + ropeLength * math.cos(angle))
 
 def main():
     global yer_çekimi
-    ip_uzunluğu = ipin_başlangiç_uzunluğu
+    ropeLength = ipin_başlangiç_uzunluğu
     ip_genişliği = 2
     ballobj = pygame.draw.circle(
         ekran, (0, 0, 0), (top_için_başlangiç_x, top_için_başlangiç_y), 10)
 
-        # Oyun Değişkenleri
+    # Oyun Değişkenleri
     clock = pygame.time.Clock()
     isRunning = True
     timePassed = 0.0
@@ -255,10 +254,10 @@ def main():
 
     while isRunning:
         clock.tick(FPS)
-        periyot = get_pendulum_period(ip_uzunluğu)
+        periyot = get_pendulum_period(ropeLength)
 
         for event in pygame.event.get():
-            ip_uzunluğu = ropeLenSlider.update(event)
+            ropeLength = ropeLenSlider.update(event)
             yer_çekimi = gravitySlider.update(event)
 
             if event.type == pygame.QUIT:
@@ -276,31 +275,31 @@ def main():
             mousePos = pygame.mouse.get_pos()
             if mousePos[0] <= 800:
                 isSwinging = False
-                angle = _angleNow = move_ball_to_mouse()
-                period = get_pendulum_period(ip_uzunluğu)
+                açı = _angleNow = move_ball_to_mouse()
+                periyot = get_pendulum_period(ropeLength)
                 timePassed = 0.0
 
         if isSwinging:
             _angleNow, _angularVelocity = move_ball_to_equation(
-                ip_uzunluğu, açı, timePassed)
+                ropeLength, açı, timePassed)
             t = clock.get_time()
             timePassed = (timePassed + t / 1000) % periyot
 
-        ballobj.centerx, ballobj.centery = get_ball_pos(_angleNow, ip_uzunluğu)
+        ballobj.centerx, ballobj.centery = get_ball_pos(_angleNow, ropeLength)
 
         ekran.fill((255, 255, 255))
-        draw_arc(ekran, açı, ip_uzunluğu)
+        draw_arc(ekran, açı, ropeLength)
         draw((ballobj.centerx, ballobj.centery), ip_genişliği)
 
         ropeLenSlider.draw(ekran)
         gravitySlider.draw(ekran)
 
         write_values_to_screen(açı, _angleNow, _angularVelocity,
-                               ip_uzunluğu, timePassed, periyot)
+                               ropeLength, timePassed, periyot)
         pygame.display.update()
 
     pygame.quit()
 
 
+
 main()
-  
