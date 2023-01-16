@@ -34,7 +34,7 @@ class Slider:
     def __init__(self, x, y, metin, minVal, maxVal):
         self.x = x
         self.y = y
-        self.metin = metin
+        self.text = metin
         self.min = minVal
         self.max = maxVal
         self.yüzde = 50
@@ -57,13 +57,13 @@ class Slider:
         pygame.draw.circle(ekran, (0, 0, 0), (locationX, self.y), 15)
 
         # Draw Slider Texts
-        draw_text(ekran, self.metin, (895, self.y-5),
+        draw_text(ekran, self.text, (895, self.y-5),
                   15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
         pygame.draw.rect(ekran, (255, 0, 255), self.valueRect, width=1)
 
         if self.writingBuffer == "":
             val = self.get_value()
-            if self.metin == "İp Uzunluğu":
+            if self.text == "İp Uzunluğu":
                 val /= ip_uzunluğu_bölücü
             draw_text(ekran, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
                       20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
@@ -99,7 +99,7 @@ class Slider:
                     if self.writingBuffer != "":
                         try:
                             v = float(self.writingBuffer)
-                            if self.metin == "İp Uzunluğu":
+                            if self.text == "İp Uzunluğu":
                                 v *= ip_uzunluğu_bölücü
                             v = self.clamp(v)
                             self.yüzde = (v - self.min) / \
@@ -137,18 +137,18 @@ def draw_arc(ekran, açı, ip_uzunluğu):
     draw_dashed_line(ekran, ip_bağlanti_konumu, l[0], (0, 0, 0), 1)
     draw_dashed_line(ekran, ip_bağlanti_konumu, l[-1], (0, 0, 0), 1)
 
-def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCenterHorizontal=False, alignCenterVertical=False):
+def draw_text(screen, textstr, konum, boyutlar, renk, alignRight=False, alignCenterHorizontal=False, alignCenterVertical=False):
 
     font = pygame.font.SysFont(pygame.font.get_default_font(), boyutlar)
     text = font.render(textstr, True, renk)
     if alignRight:
-        x = konum[0] - text.get_genişlik()           
+        x = konum[0] - text.get_width()           
     elif alignCenterHorizontal:
-        x = konum[0] - text.get_genişlik() // 2
+        x = konum[0] - text.get_width() // 2
     else:
         x = konum[0]
     if alignCenterVertical:  # Yukarıdan Aşağı
-        y = konum[1] + text.get_uzunluk() // 2  
+        y = konum[1] + text.get_height() // 2  
     else:
         y = konum[1]
         
@@ -301,5 +301,4 @@ def main():
     pygame.quit()
 
 
-
-main()
+main() 
