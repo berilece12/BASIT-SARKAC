@@ -275,4 +275,28 @@ def main():
                 angle = _angleNow = move_ball_to_mouse()
                 period = get_pendulum_period(ip_uzunluğu)
                 timePassed = 0.0
+
+                 if isSwinging:
+            _angleNow, _angularVelocity = move_ball_to_equation(
+                ip_uzunluğu, açı, timePassed)
+            t = clock.get_time()
+            timePassed = (timePassed + t / 1000) % periyot
+
+        ballobj.centerx, ballobj.centery = get_ball_pos(_angleNow, ip_uzunluğu)
+
+        ekran.fill((255, 255, 255))
+        draw_arc(ekran, açı, ip_uzunluğu)
+        draw((ballobj.centerx, ballobj.centery), ip_genişliği)
+
+        ropeLenSlider.draw(ekran)
+        gravitySlider.draw(ekran)
+
+        write_values_to_screen(açı, _angleNow, _angularVelocity,
+                               ip_uzunluğu, timePassed, periyot)
+        pygame.display.update()
+
+    pygame.quit()
+
+
+main()
   
