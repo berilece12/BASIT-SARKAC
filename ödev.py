@@ -140,27 +140,16 @@ def draw_arc(ekran, açı, ip_uzunluğu):
 def draw_text(ekran, textstr, konum, boyutlar, renk, alignRight=False, alignCenterHorizontal=False, alignCenterVertical=False):
 
     font = pygame.font.SysFont(pygame.font.get_default_font(), boyutlar)
-
     text = font.render(textstr, True, renk)
-
-
     if alignRight:
-
-        x = konum[0] - text.get_genişlik()
-           
+        x = konum[0] - text.get_genişlik()           
     elif alignCenterHorizontal:
-
         x = konum[0] - text.get_genişlik() // 2
     else:
-
         x = konum[0]
-
     if alignCenterVertical:  # Yukarıdan Aşağı
-
         y = konum[1] + text.get_uzunluk() // 2  
-
     else:
-
         y = konum[1]
         
     screen.blit(text, (x, y))
@@ -172,10 +161,21 @@ def draw_ball(ekran, konum):
 def draw_line(ekran, konum1, konum2, renk, genişlik=1):
     pygame.draw.line(ekran, renk, konum1, konum2, genişlik)
 
+def draw_dashed_line(ekran, pos1, pos2, color, width=1, space=10):
+    length = euclidean_distance(pos1, pos2)
+    xDiff = (pos2[0] - pos1[0]) / length
+    yDiff = (pos2[1] - pos1[1]) / length
+    for i in range(0, int(length), space):
+        pygame.draw.line(ekran, color, (pos1[0] + i * xDiff, pos1[1] + i * yDiff), (pos1[0] + (
+            i + space / 2) * xDiff, pos1[1] + (i + space / 2) * yDiff), width)
+
+
 def draw_rope_attachment(ekran):
     pygame.draw.rect(ekran, (0, 0, 0),
                      (ip_bağlanti_konumu[0] - 7, 0, 14, 25))
 
+def euclidean_distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
 
 def draw(_top_pozisyonu, _ip_genişliği):
 
@@ -280,7 +280,7 @@ def main():
                 period = get_pendulum_period(ip_uzunluğu)
                 timePassed = 0.0
 
-                 if isSwinging:
+        if isSwinging:
             _angleNow, _angularVelocity = move_ball_to_equation(
                 ip_uzunluğu, açı, timePassed)
             t = clock.get_time()
