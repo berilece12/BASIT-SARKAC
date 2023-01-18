@@ -8,7 +8,7 @@ pygame.init()
 #önce ekran
 
 screen = genişlik, uzunluk = 1250, 800
-APP_NAME = "Sarkaç"
+proje_adı = "Sarkaç"
 FPS = 60
 yer_çekimi = 9.8
 
@@ -16,7 +16,7 @@ ipin_başlangiç_uzunluğu = 400
 dönüşüm_sabiti = 200 #pikseli metreye döndürme sabiti
 ip_bağlanti_konumu = (uzunluk // 2, 20)
 ekran = pygame.display.set_mode(screen)
-pygame.display.set_caption(APP_NAME)
+pygame.display.set_caption(proje_adı)
 
 # sarkaç, saniyedeki görüntü sayısı, yerçekimi ve ipi tanımladık
 #arka planı tanımla
@@ -118,7 +118,7 @@ class kaydıraç:
         return self.get_value()
 
 screen = genişlik, uzunluk = 1250, 800
-APP_NAME = "Sarkaç"
+proje_adı = "Sarkaç"
 FPS = 60
 yer_çekimi = 9.8
 
