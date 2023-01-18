@@ -13,7 +13,7 @@ FPS = 60
 yer_çekimi = 9.8
 
 ipin_başlangiç_uzunluğu = 400
-ip_uzunluğu_bölücü = 200
+dönüşüm_sabiti = 200 #pikseli metreye döndürme sabiti
 ip_bağlanti_konumu = (uzunluk // 2, 20)
 ekran = pygame.display.set_mode(screen)
 pygame.display.set_caption(APP_NAME)
@@ -30,16 +30,16 @@ top_için_başlangiç_x, top_için_başlangiç_y = uzunluk / 2, ipin_başlangiç
 
 
 değer_çubuğu_uzunluğu = 250 
-class Slider:
+class kaydıraç:
     def __init__(self, x, y, metin, minVal, maxVal):
         self.x = x
         self.y = y
         self.text = metin
-        self.min = minVal
+        self.min = minVal 
         self.max = maxVal
-        self.yüzde = 50
+        self.yüzde = 50 # ip uzunluğumuz 400 yüzde %50si 200 
         self.valueRect = pygame.Rect(
-            self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30)
+            self.x + değer_çubuğu_uzunluğu + 15, self.y - 15, 70, 30) # kutucuğun konumu
         self.writing = False
         self.writingBuffer = ""
     
@@ -47,39 +47,39 @@ class Slider:
     def clamp(self, val):
         return max(self.min, min(self.max, val))
 
-    def get_value(self):
+    def get_value(self): #kaydıraçtaki değeri minval ve maxvala göre
         return self.min + (self.max - self.min) * self.yüzde / 100
 
-    def draw(self, ekran):
-        locationX = 900 + self.yüzde * 2.5
-        draw_line(ekran, (self.x, self.y), (self.x +
-                  değer_çubuğu_uzunluğu, self.y), (0, 0, 0), 5)
+    def çiz(self, ekran):
+        x_konumu = 900 + self.yüzde * 2.5
+        topun_ipi(ekran, (self.x, self.y), (self.x +
+                  değer_çubuğu_uzunluğu, self.y), (0, 0, 0), 5) #kaydıçakların kalınlığı
 
         # Draw Slider Circles (değer çubuğundaki topların genişliği,boyutu)
-        pygame.draw.circle(ekran, (0, 0, 0), (locationX, self.y), 15)
+        pygame.draw.circle(ekran, (0, 0, 0), (x_konumu, self.y), 15)
 
-        # Draw Slider Texts ( değer çubuğu yanı yazılarının büyüklüğü)
-        draw_text(ekran, self.text, (895, self.y-5),
-                  15, (0, 0, 0), alignRight=True, alignCenterHorizontal=True)
-        pygame.draw.rect(ekran, (255, 0, 255), self.valueRect, width=1)
+        # Draw Slider Texts ( değer çubuğu yanı yazılarının büyüklüğü)(ip uzunluğu,yer çekimi)
+        metin_yaz(ekran, self.text, (895, self.y-5),
+                  15, (0, 0, 0), alignRight=True, yatay_merkez_hizzası=True)
+        pygame.draw.rect(ekran, (179, 1, 137), self.valueRect, width=2)
 
 # değer çubuğuna girdiğimiz değerlerin -kutu içindeki- büyüklükleri
         if self.writingBuffer == "":
             val = self.get_value()
             if self.text == "İp Uzunluğu":
-                val /= ip_uzunluğu_bölücü
-            draw_text(ekran, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
-                      20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
+                val /= dönüşüm_sabiti
+            metin_yaz(ekran, str(round(val, 2)), (self.valueRect.centerx, self.valueRect.y),
+                      20, (0, 0, 0), düşey_merkez_hizzası=True, yatay_merkez_hizzası=True) #metin kutuusunu merkeze koyma*
         else:
-            draw_text(ekran, self.writingBuffer, (self.valueRect.centerx, self.valueRect.y),
-                      20, (0, 0, 0), alignCenterVertical=True, alignCenterHorizontal=True)
-
-    def moveIfColliding(self, mousePos):  # returns true if it was moved
+            metin_yaz(ekran, self.writingBuffer, (self.valueRect.centerx, self.valueRect.y),
+                      20, (0, 0, 0), düşey_merkez_hizzası=True, yatay_merkez_hizzası=True)
+# mouse hareketleri ve mouse üzerinden yaptığımız işlemlerin sisteme aktarılması
+    def moveIfColliding(self, mousePos):  # hareket varsa true 
         if pygame.mouse.get_pressed()[0] != 1:
             return False
         locationX = 900 + self.yüzde * 2.5
         if self.x + değer_çubuğu_uzunluğu > mousePos[0] > self.x and self.y + 15 > mousePos[1] > self.y - 15 and locationX + 15 > mousePos[0] > locationX - 15 and self.y + 15 > mousePos[1] > self.y - 15:
-            self.yüzde = (mousePos[0] - 900) / 2.5
+            self.yüzde = (mousePos[0] - 900) / 2.5 #sliderı mouse ile kaydırma miktarı
             return True
         return False
 
@@ -94,7 +94,7 @@ class Slider:
             else:
                 self.writing = False
 
-
+# kullanıcının girdiği değerleri konrtol edip sisteme atar.
         if self.writing:
             if gameEvents.type == pygame.KEYDOWN:
                 if gameEvents.key == pygame.K_RETURN:
@@ -103,7 +103,7 @@ class Slider:
                         try:
                             v = float(self.writingBuffer)
                             if self.text == "İp Uzunluğu":
-                                v *= ip_uzunluğu_bölücü
+                                v *= dönüşüm_sabiti
                             v = self.clamp(v)
                             self.yüzde = (v - self.min) / \
                                 (self.max - self.min) * 100
@@ -123,34 +123,34 @@ FPS = 60
 yer_çekimi = 9.8
 
 ipin_başlangiç_uzunluğu = 400
-ip_uzunluğu_bölücü = 200
-ip_bağlanti_konumu = (uzunluk // 2, 20)
+dönüşüm_sabiti = 200
+ip_bağlanti_konumu = (uzunluk // 2, 20) #ipin takoza uzaklığı
 
 
-def draw_arc(ekran, açı, ip_uzunluğu):
+def yay_çiz(ekran, açı, ip_uzunluğu):
     açı = int(math.degrees(açı))
     if açı == 0:
         return
     l = []
-    for i in range(-abs(açı), abs(açı)):
-        x = ip_bağlanti_konumu[0] + ip_uzunluğu * math.sin(math.radians(i))
-        y = ip_bağlanti_konumu[1] + ip_uzunluğu * math.cos(math.radians(i))
+    for i in range(-abs(açı), abs(açı)): #abs: kayan noktalı açı
+        x = ip_bağlanti_konumu[0] + ip_uzunluğu * math.sin(math.radians(i)) #açının başlangıç konumlar
+        y = ip_bağlanti_konumu[1] + ip_uzunluğu * math.cos(math.radians(i)) #
         l.append((x, y))
-    pygame.draw.lines(ekran, (0, 0, 0), False, l, 1)
-    draw_dashed_line(ekran, ip_bağlanti_konumu, l[0], (0, 0, 0), 1)
-    draw_dashed_line(ekran, ip_bağlanti_konumu, l[-1], (0, 0, 0), 1)
+    pygame.draw.lines(ekran, (255, 62, 150), False, l, 5) # yayın kalınlığı
+    kesikli_çizgi_çiz(ekran, ip_bağlanti_konumu, l[0], (255, 62, 150), 1) # eğer 1 yaparsak yay sol eksi açıda daha uzun kalıyo
+    kesikli_çizgi_çiz(ekran, ip_bağlanti_konumu, l[-1], (255, 62, 150), 1)
 
-def draw_text(screen, textstr, konum, boyutlar, renk, alignRight=False, alignCenterHorizontal=False, alignCenterVertical=False):
+def metin_yaz(screen, textstr, konum, boyutlar, renk, alignRight=False, yatay_merkez_hizzası=False, düşey_merkez_hizzası=False):
 
     font = pygame.font.SysFont(pygame.font.get_default_font(), boyutlar)
     text = font.render(textstr, True, renk)
     if alignRight:
         x = konum[0] - text.get_width()           
-    elif alignCenterHorizontal:
+    elif yatay_merkez_hizzası:
         x = konum[0] - text.get_width() // 2
     else:
         x = konum[0]
-    if alignCenterVertical:  # Yukarıdan Aşağı
+    if düşey_merkez_hizzası:  # Yukarıdan Aşağı
         y = konum[1] + text.get_height() // 2  
     else:
         y = konum[1]
@@ -158,147 +158,146 @@ def draw_text(screen, textstr, konum, boyutlar, renk, alignRight=False, alignCen
     screen.blit(text, (x, y))
 
 # sarkaç ucu topun genişliği
-def draw_ball(ekran, konum):
-    pygame.draw.circle(ekran, (255, 0, 0), konum, 20)
+def top_oluşturma(ekran, konum):
+    pygame.draw.circle(ekran, (32, 178, 170), konum, 20)
 
-def draw_line(ekran, konum1, konum2, renk, genişlik=1):
+def topun_ipi(ekran, konum1, konum2, renk, genişlik=1):
     pygame.draw.line(ekran, renk, konum1, konum2, genişlik)
 
-def draw_dashed_line(ekran, pos1, pos2, color, width=1, space=10):
-    length = euclidean_distance(pos1, pos2)
-    xDiff = (pos2[0] - pos1[0]) / length
-    yDiff = (pos2[1] - pos1[1]) / length
-    for i in range(0, int(length), space):
-        pygame.draw.line(ekran, color, (pos1[0] + i * xDiff, pos1[1] + i * yDiff), (pos1[0] + (
-            i + space / 2) * xDiff, pos1[1] + (i + space / 2) * yDiff), width)
+def kesikli_çizgi_çiz(ekran, ilk_konum, son_konum, color, genişlik=1, aralık=70):
+    uzunluk = öklid(ilk_konum, son_konum)
+    x = (son_konum[0] - ilk_konum[0]) / uzunluk #x ve y lerin hipotenüse bölümü kısaca kesikli çizgileri eşit ve tek tek çizilmesi için
+    y = (son_konum[1] - ilk_konum[1]) / uzunluk
+    for i in range(0, int(uzunluk), aralık): #kesikli çizgilerin boşluklarını ve aralıklarını ayarlar.
+        pygame.draw.line(ekran, color, (ilk_konum[0] + i * x, ilk_konum[1] + i * y), (ilk_konum[0] + (
+            i + aralık / 2) * x, ilk_konum[1] + (i + aralık / 2) * y), genişlik)
 
 #ipin bağlı olduğu kalasın boyutlandırması
-def draw_rope_attachment(ekran):
-    pygame.draw.rect(ekran, (0, 0, 0),
+def topun_bağlantısı(ekran):
+    pygame.draw.rect(ekran, (0,0,0),
                      (ip_bağlanti_konumu[0] - 7, 0, 14, 25))
 
-def euclidean_distance(p1, p2):
-    return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+def öklid(konum1, konum2): #öklid
+    return math.sqrt((konum1[0] - konum2[0])**2 + (konum1[1] - konum2[1])**2) #sqrt karekök hesaplar.
 
-def draw(_top_pozisyonu, _ip_genişliği):
+def çiz(_top_pozisyonu, _ip_genişliği):
 
     ekran.blit(BACKGROUND_IMAGE, (0, 0))
     # Draw Rope:
-    
-    draw_dashed_line(ekran, ip_bağlanti_konumu, #merkez eksen kesikli çizgi uzunluğu
+    kesikli_çizgi_çiz(ekran, ip_bağlanti_konumu, #merkez eksen kesikli çizgi uzunluğu
                      (ip_bağlanti_konumu[0], uzunluk * 2 / 3), (0, 0, 0), _ip_genişliği)
-    draw_rope_attachment(ekran)
-    draw_line(ekran, (ip_bağlanti_konumu[0] - 1, ip_bağlanti_konumu[1]), (_top_pozisyonu[0] - 1,
+    topun_bağlantısı(ekran)
+    topun_ipi(ekran, (ip_bağlanti_konumu[0] - 1, ip_bağlanti_konumu[1]), (_top_pozisyonu[0] - 1,
               _top_pozisyonu[1]), (0, 0, 0), _ip_genişliği)
     # Draw Ball:
-    draw_ball(ekran, _top_pozisyonu)
-
-def write_values_to_screen(angleMax, angle, angularVelocity, ropeLen, timePassed, period):
-    draw_text(ekran, "Maksimum Açı: " + str(round(math.degrees(angleMax), 2)
+    top_oluşturma(ekran, _top_pozisyonu)
+#girdiğimiz değerler ve top hareketi sonucu fonksiyonlardan çekilen değerleri ekranın sol üst kçöşesine yazdırma
+def değerlere_ekrana_yaz(max_açı, açı, açısal_hız, ip_uzunluğu, geçen_zaman, periyot):
+    metin_yaz(ekran, "Maksimum Açı: " + str(round(math.degrees(max_açı), 2)
                                              ) + "°", (10, 10), 20, (0, 0, 0))
-    draw_text(ekran, "Anlık Açı: " + str(round(math.degrees(angle), 2)) + "°",
+    metin_yaz(ekran, "Anlık Açı: " + str(round(math.degrees(açı), 2)) + "°",
               (10, 30), 20, (0, 0, 0))
-    draw_text(ekran, "Açısal Hız: " + str(round(angularVelocity, 2)) + " rad/s",
+    metin_yaz(ekran, "Açısal Hız: " + str(round(açısal_hız, 2)) + " rad/s",
               (10, 50), 20, (0, 0, 0))
-    draw_text(ekran, "Geçen Süre: " + str(round(timePassed, 2)) + "sn",
+    metin_yaz(ekran, "Geçen Süre: " + str(round(geçen_zaman, 2)) + "sn",
               (10, 70), 20, (0, 0, 0))
-    draw_text(ekran, "Period: " + str(round(period, 2)) + "sn",
+    metin_yaz(ekran, "Period: " + str(round(periyot, 2)) + "sn",
               (10, 90), 20, (0, 0, 0))
-    draw_text(ekran, "İp Uzunluğu: " + str(round((ropeLen / ip_uzunluğu_bölücü), 2)) + "m",
+    metin_yaz(ekran, "İp Uzunluğu: " + str(round((ip_uzunluğu / dönüşüm_sabiti), 2)) + "m",
               (10, 110), 20, (0, 0, 0))
-    draw_text(ekran, "Yer Çekimi: " + str(round(yer_çekimi, 2)) +
+    metin_yaz(ekran, "Yer Çekimi: " + str(round(yer_çekimi, 2)) +
               "m/s^2", (10, 130), 20, (0, 0, 0))
 
 
-def get_pendulum_period(ip_uzunluğu):
-    return 2 * math.pi * math.sqrt((ip_uzunluğu / ip_uzunluğu_bölücü)/yer_çekimi)
+def sarkacın_periyodu(ip_uzunluğu): #periyot denklemi T=2pikökl/g
+    return 2 * math.pi * math.sqrt((ip_uzunluğu / dönüşüm_sabiti)/yer_çekimi) #sqrt karekök alır.
 
-def move_ball_to_mouse():
+def mouse_hareketi():
     mousePos = pygame.mouse.get_pos()
     angleRad = math.atan2(
         mousePos[0] - ip_bağlanti_konumu[0], mousePos[1] - ip_bağlanti_konumu[1])
     return angleRad
 
-def move_ball_to_equation(ip_uzunluğu, açi, geçen_süre):
+def top_hareket_denklemi(ip_uzunluğu, açi, geçen_süre): #topun hareket denklemi 
     angleNow = açi * \
-        math.cos(math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * geçen_süre)
+        math.cos(math.sqrt(yer_çekimi/(ip_uzunluğu/dönüşüm_sabiti)) * geçen_süre)#sqrt karekök hesaplar.
     angularVelocity = -açi * \
-        math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * \
-        math.sin(math.sqrt(yer_çekimi/(ip_uzunluğu/ip_uzunluğu_bölücü)) * geçen_süre)
+        math.sqrt(yer_çekimi/(ip_uzunluğu/dönüşüm_sabiti)) * \
+        math.sin(math.sqrt(yer_çekimi/(ip_uzunluğu/dönüşüm_sabiti)) * geçen_süre)#sqrt karekök hesaplar.
     return angleNow, angularVelocity
   
-def get_ball_pos(angle, ropeLength):
-    return (ip_bağlanti_konumu[0] + ropeLength * math.sin(angle), ip_bağlanti_konumu[1] + ropeLength * math.cos(angle))
+def topun_konumu(açı, ipin_uzunluğu):
+    return (ip_bağlanti_konumu[0] + ipin_uzunluğu * math.sin(açı), ip_bağlanti_konumu[1] + ipin_uzunluğu * math.cos(açı))
 
 def main():
     global yer_çekimi
-    ropeLength = ipin_başlangiç_uzunluğu
+    ipin_uzunluğu = ipin_başlangiç_uzunluğu
     ip_genişliği = 2
-    ballobj = pygame.draw.circle(
+    top = pygame.draw.circle(
         ekran, (0, 0, 0), (top_için_başlangiç_x, top_için_başlangiç_y), 10)
 
     # Oyun Değişkenleri
     clock = pygame.time.Clock()
-    isRunning = True
-    timePassed = 0.0
+    hareket_varsa = True
+    geçen_zaman = 0.0
 
     # Fizik Değişkenleri
     periyot = 0
-    isSwinging = False
+    top_aktif = False #top oynuyor mu yer değiştirme fonksiyonuna girecek mi onu belirliyor
     açı = 0
-    _angleNow = 0
-    _angularVelocity = 0
+    anlık_açı = 0
+    açısal_hız = 0
     ballMass =  1
 
     # Slider Değişkenleri
-    ropeLenSlider = Slider(900, 100, "İp Uzunluğu", 200, 600) #ip başlanggiç değeri
-    gravitySlider = Slider(900, 200, "Yer Çekimi", 0.1, 25)#yerçekimi başlangiç değeri
+    ip_uzunluğu_kaydıracı = kaydıraç(900, 100, "İp Uzunluğu", 200, 600) #ip başlanggiç değeri _sağ,sol------ip baslangıç uzunluğu fonk.
+    yer_çekimi_kaydıracı = kaydıraç(900, 200, "Yer Çekimi", 0.1, 25)#yerçekimi başlangiç değeri
 
 
-    while isRunning:
+    while hareket_varsa:
         clock.tick(FPS)
-        periyot = get_pendulum_period(ropeLength)
+        periyot = sarkacın_periyodu(ipin_uzunluğu)
 
         for event in pygame.event.get():
-            ropeLength = ropeLenSlider.update(event)
-            yer_çekimi = gravitySlider.update(event)
+            ipin_uzunluğu = ip_uzunluğu_kaydıracı.update(event)
+            yer_çekimi = yer_çekimi_kaydıracı.update(event)
 
             if event.type == pygame.QUIT:
-                isRunning = False
+                hareket_varsa = False
                 break
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    isSwinging = not isSwinging
+                    top_aktif = not top_aktif
             if event.type == pygame.MOUSEBUTTONUP:
                 if pygame.mouse.get_pos()[0] < 900:
-                    açı = move_ball_to_mouse()
-                    isSwinging = True
+                    açı = mouse_hareketi()
+                    top_aktif = True
   
         if pygame.mouse.get_pressed()[0]:
             mousePos = pygame.mouse.get_pos()
             if mousePos[0] <= 800:
-                isSwinging = False
-                açı = _angleNow = move_ball_to_mouse()
-                periyot = get_pendulum_period(ropeLength)
-                timePassed = 0.0
+                top_aktif = False
+                açı = anlık_açı = mouse_hareketi()
+                periyot = sarkacın_periyodu(ipin_uzunluğu)
+                geçen_zaman = 0.0
 
-        if isSwinging:
-            _angleNow, _angularVelocity = move_ball_to_equation(
-                ropeLength, açı, timePassed)
+        if top_aktif:
+            anlık_açı, açısal_hız = top_hareket_denklemi(
+                ipin_uzunluğu, açı, geçen_zaman)
             t = clock.get_time()
-            timePassed = (timePassed + t / 1000) % periyot
+            geçen_zaman = (geçen_zaman + t / 1000) % periyot
 
-        ballobj.centerx, ballobj.centery = get_ball_pos(_angleNow, ropeLength)
+        top.centerx, top.centery = topun_konumu(anlık_açı, ipin_uzunluğu)
 
         ekran.fill((255, 255, 255))
-        draw_arc(ekran, açı, ropeLength)
-        draw((ballobj.centerx, ballobj.centery), ip_genişliği)
+        yay_çiz(ekran, açı, ipin_uzunluğu)
+        çiz((top.centerx, top.centery), ip_genişliği)
 
-        ropeLenSlider.draw(ekran)
-        gravitySlider.draw(ekran)
+        ip_uzunluğu_kaydıracı.çiz(ekran)
+        yer_çekimi_kaydıracı.çiz(ekran)
 
-        write_values_to_screen(açı, _angleNow, _angularVelocity,
-                               ropeLength, timePassed, periyot)
+        değerlere_ekrana_yaz(açı, anlık_açı, açısal_hız,
+                               ipin_uzunluğu, geçen_zaman, periyot)
         pygame.display.update()
 
     pygame.quit()
