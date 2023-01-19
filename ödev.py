@@ -124,7 +124,7 @@ yer_çekimi = 9.8
 
 ipin_başlangiç_uzunluğu = 400
 dönüşüm_sabiti = 200
-ip_bağlanti_konumu = (uzunluk // 2, 20) #ipin takoza uzaklığı
+ip_bağlanti_konumu = (uzunluk // 2, 20) #ipin takoza uzaklığı topu kaydır
 
 
 def yay_çiz(ekran, açı, ip_uzunluğu):
@@ -219,12 +219,12 @@ def mouse_hareketi():
     return angleRad
 
 def top_hareket_denklemi(ip_uzunluğu, açi, geçen_süre): #topun hareket denklemi 
-    angleNow = açi * \
+    anlık_açı = açi * \
         math.cos(math.sqrt(yer_çekimi/(ip_uzunluğu/dönüşüm_sabiti)) * geçen_süre)#sqrt karekök hesaplar.
-    angularVelocity = -açi * \
+    açısal_hız = -açi * \
         math.sqrt(yer_çekimi/(ip_uzunluğu/dönüşüm_sabiti)) * \
         math.sin(math.sqrt(yer_çekimi/(ip_uzunluğu/dönüşüm_sabiti)) * geçen_süre)#sqrt karekök hesaplar.
-    return angleNow, angularVelocity
+    return anlık_açı, açısal_hız
   
 def topun_konumu(açı, ipin_uzunluğu):
     return (ip_bağlanti_konumu[0] + ipin_uzunluğu * math.sin(açı), ip_bağlanti_konumu[1] + ipin_uzunluğu * math.cos(açı))
