@@ -51,8 +51,8 @@ class kaydıraç:
         return self.min + (self.max - self.min) * self.yüzde / 100
 
     def çiz(self, ekran):
-        x_konumu = 900 + self.yüzde * 2.5
-        topun_ipi(ekran, (self.x, self.y), (self.x +
+        x_konumu = 900 + self.yüzde * 2.5 #kaydıraçtaki topun konumu 
+        kaydıracın_topu(ekran, (self.x, self.y), (self.x +
                   değer_çubuğu_uzunluğu, self.y), (0, 0, 0), 5) #kaydıçakların kalınlığı
 
         # Draw Slider Circles (değer çubuğundaki topların genişliği,boyutu)
@@ -141,7 +141,7 @@ def yay_çiz(ekran, açı, ip_uzunluğu):
     kesikli_çizgi_çiz(ekran, ip_bağlanti_konumu, l[-1], (255, 62, 150), 1)
 
 def metin_yaz(screen, textstr, konum, boyutlar, renk, alignRight=False, yatay_merkez_hizzası=False, düşey_merkez_hizzası=False):
-
+#kaydıraç kutusu içindeki yazıların hizzası
     font = pygame.font.SysFont(pygame.font.get_default_font(), boyutlar)
     text = font.render(textstr, True, renk)
     if alignRight:
@@ -161,7 +161,7 @@ def metin_yaz(screen, textstr, konum, boyutlar, renk, alignRight=False, yatay_me
 def top_oluşturma(ekran, konum):
     pygame.draw.circle(ekran, (32, 178, 170), konum, 20)
 
-def topun_ipi(ekran, konum1, konum2, renk, genişlik=1):
+def kaydıracın_topu(ekran, konum1, konum2, renk, genişlik=1):
     pygame.draw.line(ekran, renk, konum1, konum2, genişlik)
 
 def kesikli_çizgi_çiz(ekran, ilk_konum, son_konum, color, genişlik=1, aralık=70):
@@ -182,12 +182,12 @@ def öklid(konum1, konum2): #öklid
 
 def çiz(_top_pozisyonu, _ip_genişliği):
 
-    ekran.blit(BACKGROUND_IMAGE, (0, 0))
+    ekran.blit(BACKGROUND_IMAGE, (0, 0))#merkeze
     # Draw Rope:
     kesikli_çizgi_çiz(ekran, ip_bağlanti_konumu, #merkez eksen kesikli çizgi uzunluğu
                      (ip_bağlanti_konumu[0], uzunluk * 2 / 3), (0, 0, 0), _ip_genişliği)
     topun_bağlantısı(ekran)
-    topun_ipi(ekran, (ip_bağlanti_konumu[0] - 1, ip_bağlanti_konumu[1]), (_top_pozisyonu[0] - 1,
+    kaydıracın_topu(ekran, (ip_bağlanti_konumu[0] - 1, ip_bağlanti_konumu[1]), (_top_pozisyonu[0] - 1,
               _top_pozisyonu[1]), (0, 0, 0), _ip_genişliği)
     # Draw Ball:
     top_oluşturma(ekran, _top_pozisyonu)
@@ -229,7 +229,7 @@ def top_hareket_denklemi(ip_uzunluğu, açi, geçen_süre): #topun hareket denkl
 def topun_konumu(açı, ipin_uzunluğu):
     return (ip_bağlanti_konumu[0] + ipin_uzunluğu * math.sin(açı), ip_bağlanti_konumu[1] + ipin_uzunluğu * math.cos(açı))
 
-def main():
+def proje():
     global yer_çekimi
     ipin_uzunluğu = ipin_başlangiç_uzunluğu
     ip_genişliği = 2
@@ -303,4 +303,4 @@ def main():
     pygame.quit()
 
 
-main() 
+proje() 
